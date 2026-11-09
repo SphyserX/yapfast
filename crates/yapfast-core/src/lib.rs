@@ -86,6 +86,7 @@ pub mod video_player;
 pub mod voice;
 #[cfg(feature = "matrix")]
 pub mod voice_demo;
+pub mod voice_roster;
 pub mod volume;
 
 /// Install the TLS provider before starting Matrix or calling services.
