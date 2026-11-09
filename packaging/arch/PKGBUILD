@@ -3,14 +3,15 @@
 # Builds the Discord-only release the way nix/package.nix does, with Arch's toolchain.
 
 pkgname=yapfast
-# The release to build, by its tag; scripts/set-version keeps it at Cargo.toml's version.
-pkgver=0.3.0
+# A trial build of SphyserX's fork, branch try/voice-channel-features: the
+# 0.3.0 tree with the voice channel call times and the voice channel card.
+pkgver=0.3.0.voice
 pkgrel=1
 _id=io.github.yapfast.Yapfast
 # The prebuilt native parts nix/native.nix pins.
 _webrtc=webrtc-51ef663
 _skia=skia-binaries-30669978c3f39a73e8a7-$CARCH-unknown-linux-gnu-ftembed-ganesh-gl-jpegd-jpege-pdf-textlayout.tar.gz
-pkgdesc='Native Discord client that stays light on memory'
+pkgdesc='Native Discord client that stays light on memory (trial build with voice channel call times and cards)'
 arch=(x86_64)
 url='https://github.com/yapfast/yapfast'
 license=(GPL-3.0-or-later)
@@ -44,7 +45,7 @@ makedepends=(cargo clang cmake curl git llvm21 nasm pkgconf protobuf python)
 # webrtc-sys compiles C++ with cc; Arch's LTO flags would leave it unlinkable.
 options=(!lto)
 source=(
-  "$pkgname::git+https://github.com/yapfast/yapfast.git#tag=v$pkgver"
+  "$pkgname::git+https://github.com/SphyserX/yapfast.git#branch=try/voice-channel-features"
   "$_webrtc-linux-x64-release.zip::https://github.com/livekit/rust-sdks/releases/download/$_webrtc/webrtc-linux-x64-release.zip"
   "https://github.com/rust-skia/skia-binaries/releases/download/0.157.0/$_skia"
 )
